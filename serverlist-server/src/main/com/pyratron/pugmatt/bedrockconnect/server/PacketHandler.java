@@ -169,41 +169,27 @@ public class PacketHandler implements BedrockPacketHandler {
                                     player.openForm(UIForms.SERVER_GROUP);
                                 }
                                 break;
-                            case FEATURED_SERVER:
-                                int featuredServer = serverIndex - playerServers.size() - customServers.length;
+                            case NG_SERVER:
+                                int featuredServerIndex = serverIndex - playerServers.size() - customServers.length;
+                                List<ServerInfo> featuredServers = BedrockConnect.getServerManager().getFeaturedServers();
 
-                                switch (featuredServer) {
-                                    case 0: // Hive
-                                        transfer(getIP("geo.hivebedrock.network"), 19132);
-                                        break;
-                                    case 1: // Cubecraft
-                                        transfer(!BedrockConnect.getConfig().canFetchFeaturedIps() ? getIP("mco.cubecraft.net") : "mco.cubecraft.net", 19132);
-                                        break;
-                                    case 2: // Lifeboat
-                                        transfer(getIP("mco.lbsg.net"), 19132);
-                                        break;
-                                    case 3: // Mineville
-                                        transfer(getIP("play.inpvp.net"), 19132);
-                                        break;
-                                    case 4: // Galaxite
-                                        transfer(getIP("play.galaxite.net"), 19132);
-                                        break;
-                                    case 5: // Enchanted Dragons
-                                        transfer(getIP("play.enchanted.gg"), 19132);
-                                        break;
+                                if (featuredServerIndex >= 0 && featuredServerIndex < featuredServers.size()) {
+                                    ServerInfo serverInfo = featuredServers.get(featuredServerIndex);
+                                    transfer(getIP(serverInfo.getAddress()), serverInfo.getPort());
                                 }
                                 break;
-                        }
+                            case OTHER_BUTTON:
+                                player.openForm(UIForms.OTHER);
+                                break;
                     }
-                    break;
-                case UIForms.SERVER_GROUP:
-                    if(packet.getFormData() == null || packet.getFormData().contains("null")) {
-                        if(player.getCurrentForm() != packet.getFormId())
-                            return PacketSignal.HANDLED;
-                        player.openForm(UIForms.MAIN);
-                    }
-                    else {
-                        int chosen = Integer.parseInt(packet.getFormData().replaceAll("\\s+",""));
+                }
+                break;
+            case UIForms.SERVER_GROUP:
+                if (packet.getFormData() == null || packet.getFormData().contains("null")) {
+                    if (player.getCurrentForm() != packet.getFormId()) return PacketSignal.HANDLED;
+                    player.openForm(UIForms.MAIN);
+                } else {
+                    int chosen = Integer.parseInt(packet.getFormData().replaceAll("\\s+", ""));
 
                         CustomEntry[] customServers = BedrockConnect.getConfig().getCustomServers();
                         CustomServerGroup group = (CustomServerGroup) customServers[player.getSelectedGroup()];
@@ -388,6 +374,25 @@ public class PacketHandler implements BedrockPacketHandler {
                 case UIForms.ERROR:
                     // Reopen previous form before error
                     player.openForm(player.getCurrentForm());
+                    break;
+                case UIForms.OTHER:
+                    if (packet.getFormData() == null || packet.getFormData().contains("null")) {
+                        player.openForm(UIForms.MAIN);
+                        break;
+                    }
+
+                    int chosen = Integer.parseInt(packet.getFormData().replaceAll("\\s+", ""));
+                    List<ServerInfo> otherServers = BedrockConnect.getServerManager().getOtherServers();
+
+                    if (chosen == otherServers.size()) { // Back button
+                        player.openForm(UIForms.MAIN);
+                        break;
+                    }
+
+                    if (chosen >= 0 && chosen < otherServers.size()) {
+                        ServerInfo serverInfo = otherServers.get(chosen);
+                        transfer(getIP(serverInfo.getAddress()), serverInfo.getPort());
+                    }
                     break;
         }
 

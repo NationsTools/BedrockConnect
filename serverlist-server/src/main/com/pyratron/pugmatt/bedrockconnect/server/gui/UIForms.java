@@ -6,6 +6,7 @@ import main.com.pyratron.pugmatt.bedrockconnect.*;
 import main.com.pyratron.pugmatt.bedrockconnect.config.Custom.CustomEntry;
 import main.com.pyratron.pugmatt.bedrockconnect.config.Custom.CustomServer;
 import main.com.pyratron.pugmatt.bedrockconnect.config.Custom.CustomServerGroup;
+import main.com.pyratron.pugmatt.bedrockconnect.server.ServerInfo;
 
 import org.cloudburstmc.protocol.bedrock.BedrockServerSession;
 import org.cloudburstmc.protocol.bedrock.packet.ModalFormRequestPacket;
@@ -15,11 +16,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UIForms {
-    public static final int ERROR = 2, MAIN = 0, DIRECT_CONNECT = 1, REMOVE_SERVER = 3, MANAGE_SERVER = 4, EDIT_SERVER = 5, EDIT_CHOOSE_SERVER = 6, ADD_SERVER = 7, SERVER_GROUP = 8, MOTD = 9;
+    public static final int ERROR = 2, MAIN = 0, OTHER = 10, DIRECT_CONNECT = 1, REMOVE_SERVER = 3, MANAGE_SERVER = 4, EDIT_SERVER = 5, EDIT_CHOOSE_SERVER = 6, ADD_SERVER = 7, SERVER_GROUP = 8, MOTD = 9;
 
     public static JsonArray mainMenuButtons = new JsonArray();
     public static JsonArray manageListButtons = new JsonArray();
-    public static JsonArray featuredServerButtons = new JsonArray();
+    public static JsonArray otherServer = new JsonArray();
 
     public static final int DEFAULT_PORT = 19132;
 
@@ -35,12 +36,7 @@ public class UIForms {
         manageListButtons.add(UIComponents.createButton(BedrockConnect.getConfig().getLanguage().getWording("manage", "editBtn")));
         manageListButtons.add(UIComponents.createButton(removeBtnText));
 
-        featuredServerButtons.add(UIComponents.createButton("The Hive", "https://i.imgur.com/RfxfPGz.png", "url"));
-        featuredServerButtons.add(UIComponents.createButton("CubeCraft Games", "https://i.imgur.com/aFH1NUr.png", "url"));
-        featuredServerButtons.add(UIComponents.createButton("Lifeboat Network", "https://i.imgur.com/LoI7bYx.png", "url"));
-        featuredServerButtons.add(UIComponents.createButton("Mineville", "https://i.imgur.com/0K4TDut.png", "url"));
-        featuredServerButtons.add(UIComponents.createButton("Galaxite", "https://i.imgur.com/VxXO8Of.png", "url"));
-        featuredServerButtons.add(UIComponents.createButton("Enchanted Dragons", "https://i.imgur.com/1Fh9CBf.png", "url"));
+        otherServer.add(UIComponents.createButton("Other Server"));
     }
 
     public static ModalFormRequestPacket createMain(List<String> servers, BedrockServerSession session) {
@@ -66,8 +62,15 @@ public class UIForms {
             buttons.add(UIComponents.createButton(cs.getName(), cs.getIconUrl(), "url"));
         }
 
-        if(BedrockConnect.getConfig().isFeaturedServersEnabled()) {
-            buttons.addAll(featuredServerButtons);
+        if(BedrockConnect.getConfig().NG_Server()) {
+            List<ServerInfo> featured = BedrockConnect.getServerManager().getFeaturedServers();
+            for (ServerInfo server : featured) {
+                buttons.add(UIComponents.createButton(server.getName(), server.getImageUrl(), "url"));
+            }
+        }
+
+        if(BedrockConnect.getConfig().featuredServer()) {
+            buttons.addAll(otherServer);
         }
 
         out.add("buttons", buttons);
@@ -76,6 +79,25 @@ public class UIForms {
 
         fixIcons(session);
 
+        return mf;
+    }
+
+    public static ModalFormRequestPacket createOtherList() {
+        ModalFormRequestPacket mf = new ModalFormRequestPacket();
+        mf.setFormId(OTHER);
+        JsonObject out = UIComponents.createForm("form", "Other Server");
+        out.addProperty("content", "");
+
+        JsonArray buttons = new JsonArray();
+        List<ServerInfo> other = BedrockConnect.getServerManager().getOtherServers();
+        for (ServerInfo server : other) {
+            buttons.add(UIComponents.createButton(server.getName(), server.getImageUrl(), "url"));
+        }
+        buttons.add(UIComponents.createButton("Back"));
+        
+        out.add("buttons", buttons);
+
+        mf.setFormData(out.toString());
         return mf;
     }
 
@@ -102,6 +124,8 @@ public class UIForms {
 
         return mf;
     }
+
+
 
     public static void fixIcons(BedrockServerSession session) {
         // Fix icons not loading
@@ -135,17 +159,21 @@ public class UIForms {
                     return MainFormButton.MANAGE;
                 case 2:
                     return MainFormButton.EXIT;
+                case 3:
+                    return MainFormButton.NG_SERVER;
             }
         }
 
-        if(btnId == 0) {
-            return MainFormButton.EXIT;
-        } else if(serverIndex + 1 > playerServers.size() + customServers.length) {
-            return MainFormButton.FEATURED_SERVER;
-        } else if (serverIndex + 1 > playerServers.size() && serverIndex - playerServers.size() < customServers.length) {
-            return MainFormButton.CUSTOM_SERVER;
-        } else {
+        int featuredCount = BedrockConnect.getServerManager().getFeaturedServers().size();
+
+        if(serverIndex < playerServers.size()) {
             return MainFormButton.USER_SERVER;
+        } else if(serverIndex < playerServers.size() + customServers.length) {
+            return MainFormButton.CUSTOM_SERVER;
+        } else if(serverIndex < playerServers.size() + customServers.length + featuredCount) {
+            return MainFormButton.NG_SERVER;
+        } else {
+            return MainFormButton.OTHER_BUTTON;
         }
     }
 
@@ -157,6 +185,15 @@ public class UIForms {
                 return ManageFormButton.EDIT;
             case 2:
                 return ManageFormButton.REMOVE;
+        }
+        return null;
+    }
+    public static OtherFormButton getOtherFormButton(int btnId) {
+        switch (btnId) {
+            case 0:
+                return OtherFormButton.SERVER;
+            case 1:
+                return OtherFormButton.BACK;
         }
         return null;
     }

@@ -46,10 +46,11 @@ public class Config {
     private int motdCooldown = 0;
     private boolean kickInactive = true;
     private boolean userServers = true;
-    private boolean featuredServers = true;
-    private boolean fetchFeaturedIps = true;
+    private boolean ngServer = true;
+    private boolean featuredServer = true;
+    private boolean fetchFeaturedIps = false;
     private boolean debug = false;
-    private boolean fetchIps = false;
+    private boolean fetchIps = true;
     private boolean storeDisplayNames = true;
     private boolean onlineMode = true;
     private int packetLimit = 200;
@@ -183,7 +184,7 @@ public class Config {
                             br.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                                     "<DNSMasqConfig xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n" +
                                     "  <DNSMasqEntries>\n" +
-                                    "    <DNSMasqHost name=\"hivebedrock.network\" a=\"" + selectedIP + "\" />\n" +
+                                    "    <DNSMasqHost name=\"bedrock.nationsglory.fr\" a=\"" + selectedIP + "\" />\n" +
                                     "    <DNSMasqHost name=\"play.inpvp.net\" a=\"" + selectedIP + "\" />\n" +
                                     "    <DNSMasqHost name=\"mco.lbsg.net\" a=\"" + selectedIP + "\" />\n" +
                                     "    <DNSMasqHost name=\"play.lbsg.net\" a=\"" + selectedIP + "\" />\n" +
@@ -203,8 +204,8 @@ public class Config {
                 case "user_servers":
                     userServers = setting.getValue().equalsIgnoreCase("true");
                     break;
-                case "featured_servers":
-                    featuredServers = setting.getValue().equalsIgnoreCase("true");
+                case "ng_server":
+                    ngServer = setting.getValue().equalsIgnoreCase("true");
                     break;
                 case "fetch_featured_ips":
                     fetchFeaturedIps = setting.getValue().equalsIgnoreCase("true");
@@ -311,12 +312,7 @@ public class Config {
                 // for the featured servers if fetching the featured ips is set to disabled
                 File ipFile = new File("featured_server_ips.json");
                 if (ipFile.createNewFile()) {
-                    featuredServerIps.put("hivebedrock.network", "167.114.81.89");
-                    featuredServerIps.put("mco.cubecraft.net", "51.178.75.10");
-                    featuredServerIps.put("mco.lbsg.net", "142.44.240.96");
-                    featuredServerIps.put("play.inpvp.net", "52.234.130.241");
-                    featuredServerIps.put("play.galaxite.net", "51.222.8.223");
-                    featuredServerIps.put("play.enchanted.gg", "216.39.241.141");
+                    featuredServerIps.put("bedrock.nationsglory.fr", "195.216.171.166");
 
                     JSONObject jo = new JSONObject();
                     for (Map.Entry<String, String> server : featuredServerIps.entrySet()) {
@@ -416,10 +412,12 @@ public class Config {
         return userServers;
     }
 
-    public boolean isFeaturedServersEnabled() {
-        return featuredServers;
+    public boolean NG_Server() {
+        return ngServer;
     }
-
+    public boolean featuredServer() {
+        return featuredServer;
+    }
     public boolean canFetchFeaturedIps() {
         return fetchFeaturedIps;
     }
@@ -428,7 +426,7 @@ public class Config {
         return debug;
     }
 
-     public boolean isOnlineModeEnabled() {
+    public boolean isOnlineModeEnabled() {
         return onlineMode;
     }
 

@@ -228,11 +228,13 @@ public class BCPlayer {
             case UIForms.MOTD:
                 form = UIForms.createMotd();
                 break;
+            case UIForms.OTHER:
+                form = UIForms.createOtherList();
+                break;
             default:
                 form = UIForms.createMain(getServerList(), session);
                 break;
         }
-
         return form;
     }
 

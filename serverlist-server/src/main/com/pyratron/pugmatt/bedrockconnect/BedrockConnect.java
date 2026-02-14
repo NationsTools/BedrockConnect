@@ -8,6 +8,7 @@ import main.com.pyratron.pugmatt.bedrockconnect.data.Database;
 import main.com.pyratron.pugmatt.bedrockconnect.data.DatabaseTypes;
 import main.com.pyratron.pugmatt.bedrockconnect.logging.LogColors;
 import main.com.pyratron.pugmatt.bedrockconnect.server.Server;
+import main.com.pyratron.pugmatt.bedrockconnect.server.ServerManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +26,7 @@ public class BedrockConnect {
     private static Database database;
     private static DataUtil data;
     private static Server server;
+    private static ServerManager serverManager;
 
     public static Logger logger = LoggerFactory.getLogger(BedrockConnect.class);
 
@@ -78,6 +80,8 @@ public class BedrockConnect {
             config = Config.init();
             config.load(settings, settingsArgs, settingsFile, settingsEnv);
 
+            serverManager = new ServerManager();
+
             server = new Server(config.getBindIp(), config.getPort());
         } catch(Exception e) {
             BedrockConnect.logger.error("An error occured", e);
@@ -95,6 +99,10 @@ public class BedrockConnect {
 
     public static Server getServer() {
         return server;
+    }
+
+    public static ServerManager getServerManager() {
+        return serverManager;
     }
 
     public static void loadDatasource(String hostname, String databaseName, String username, String password, DatabaseTypes databaseType, boolean autoReconnect, boolean usingDatabase) {
