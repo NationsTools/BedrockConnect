@@ -1,71 +1,71 @@
 {
   "motd": {
-    "heading": "Message of the Day",
-    "continueBtn": "Continue to Server List"
+    "heading": "Message du Jour",
+    "continueBtn": "Continuer vers la Liste des Serveurs"
   },
   "serverInfo": {
-    "motd": "Join To Open Server List",
-    "subMotd": "BedrockConnect Server List"
+    "motd": "Rejoignez pour Ouvrir la Liste des Serveurs",
+    "subMotd": "Liste des Serveurs BedrockConnect"
   },
   "main": {
-    "heading": "ServerList",
+    "heading": "Liste des Serveurs",
     "message": "",
-    "connectBtn" : "Connect to a Server",
-    "manageBtn" : "Manage Server List",
-    "exitBtn": "Exit Server List"
+    "connectBtn" : "Se Connecter à un Serveur",
+    "manageBtn" : "Gérer la Liste des Serveurs",
+    "exitBtn": "Quitter la Liste"
   },
   "manage": {
-    "heading": "Manage Server List",
-    "addBtn": "Add a Server",
-    "removeBtn": "Remove a Server",
-    "editBtn": "Edit a Server"
+    "heading": "Gérer la Liste des Serveurs",
+    "addBtn": "Ajouter un Serveur",
+    "removeBtn": "Supprimer un Serveur",
+    "editBtn": "Modifier un Serveur"
   },
   "connect": {
-    "heading": "Connect to a Server",
-    "addressTitle": "Server Address",
-    "addressPlaceholder": "Please enter IP or Address",
-    "portTitle": "Server Port",
-    "portPlaceholder": "Please enter Port",
-    "displayNameTitle": "(Optional) Display Name on Server List",
-    "addToggle": "Add to server list"
+    "heading": "Se Connecter à un Serveur",
+    "addressTitle": "Adresse du Serveur",
+    "addressPlaceholder": "Veuillez entrer l'IP ou l'adresse",
+    "portTitle": "Port du Serveur",
+    "portPlaceholder": "Veuillez entrer le port",
+    "displayNameTitle": "(Optionnel) Nom d'Affichage dans la Liste",
+    "addToggle": "Ajouter à la liste des serveurs"
   },
   "add": {
-    "heading": "Add a Server"
+    "heading": "Ajouter un Serveur"
   },
   "edit": {
-    "heading": "Edit Server",
-    "chooseHeading": "Choose a Server",
-    "serverDropdown": "Servers"
+    "heading": "Modifier le Serveur",
+    "chooseHeading": "Choisissez un Serveur",
+    "serverDropdown": "Serveurs"
   },
   "remove": {
-    "heading": "Remove Server",
-    "serverDropdown": "Servers"
+    "heading": "Supprimer un Serveur",
+    "serverDropdown": "Serveurs"
   },
   "serverGroup": {
-    "backBtn": "Back To List"
+    "backBtn": "Retour à la Liste"
   },
   "retriggerMsg": {
-    "tip": "Crouch or punch to re-trigger the popup",
-    "chat": "\n\n\n\n\n\n\n\n\n\n\n\n\n\n==!!== Crouch or punch to re-trigger the popup ==!!==\n\n\n\n\n\n\n\n\n\n\n"
+    "tip": "Accroupissez-vous ou frappez pour réafficher le menu",
+    "chat": ""
   },
   "error": {
-    "heading": "Error",
-    "addressLarge": "Address is too large. (Must be 253 characters or less)",
-    "portLarge": "Port is too large. (Must be less than 10 characters)",
-    "nameLarge": "Display name is too large. (Must be 36 characters or less)",
-    "invalidAddress": "Enter a valid address. (E.g. play.example.net, 172.16.254.1)",
-    "invalidPort": "Enter a valid port that contains only numbers",
-    "invalidName": "Display name can only contain letters, numbers, and spaces between characters",
-    "serverLimit": "You have hit your serverlist limit of %MAX_SERVERS% servers. Remove some to add more.",
-    "invalidUserServer": "Invalid server address",
-    "invalidServerConnect": "Please enter a valid IP/Address and port that contains only numbers.",
-    "invalidServerRemove": "Invalid server to remove",
-    "invalidServerEdit": "Invalid server to edit",
-    "transferError": "Error connecting to server. Invalid address."
+    "heading": "Erreur",
+    "addressLarge": "L'adresse est trop longue. (253 caractères maximum)",
+    "portLarge": "Le port est trop long. (10 caractères maximum)",
+    "nameLarge": "Le nom d'affichage est trop long. (36 caractères maximum)",
+    "invalidAddress": "Entrez une adresse valide. (Ex: play.exemple.net, 172.16.254.1)",
+    "invalidPort": "Entrez un port valide contenant uniquement des chiffres",
+    "invalidName": "Le nom d'affichage ne peut contenir que des lettres, chiffres et espaces",
+    "serverLimit": "Vous avez atteint la limite de serveurs. Supprimez-en pour en ajouter d'autres.",
+    "invalidUserServer": "Adresse de serveur invalide",
+    "invalidServerConnect": "Veuillez entrer une IP/Adresse et un port valides contenant uniquement des chiffres.",
+    "invalidServerRemove": "Serveur à supprimer invalide",
+    "invalidServerEdit": "Serveur à modifier invalide",
+    "transferError": "Erreur de connexion au serveur. Adresse invalide."
   },
   "disconnect": {
-    "inactivity": "Kicked for inactivity",
-    "exit": "Exiting Server List",
-    "dataError": "We had some trouble receiving your player data. Please report this to the BedrockConnect GitHub if the issue continues."
+    "inactivity": "Expulsé pour inactivité",
+    "exit": "Fermeture de la Liste des Serveurs",
+    "dataError": "Nous avons rencontré un problème en récupérant vos données. Veuillez signaler ce problème sur le GitHub BedrockConnect si cela persiste."
   }
 }

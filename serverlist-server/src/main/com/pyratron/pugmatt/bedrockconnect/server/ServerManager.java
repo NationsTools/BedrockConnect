@@ -72,20 +72,32 @@ public class ServerManager {
         JSONArray other = new JSONArray();
 
         // NationsGlory Servers
-        addServer(featured, "Hub NationsGlory", "bedrock.nationsglory.fr", 19132, "https://s3.nationstools.fr/public/bedrockconnect/Hub.png");
-        addServer(featured, "NationsGlory Alpha", "bedrock.nationsglory.fr", 19100, "https://s3.nationstools.fr/public/bedrockconnect/Alpha.png");
-        addServer(featured, "NationsGlory Sigma", "bedrock.nationsglory.fr", 19102, "https://s3.nationstools.fr/public/bedrockconnect/Sigma.png");
-        addServer(featured, "NationsGlory Omega", "bedrock.nationsglory.fr", 19103, "https://s3.nationstools.fr/public/bedrockconnect/Omega.png");
-        addServer(featured, "NationsGlory Delta", "bedrock.nationsglory.fr", 19101, "https://s3.nationstools.fr/public/bedrockconnect/Delta.png");
-        addServer(featured, "NationsGlory Epsilon", "bedrock.nationsglory.fr", 19104, "https://s3.nationstools.fr/public/bedrockconnect/Epsilon.png");
+        addServer(featured, "Hub NationsGlory", "bedrock.nationsglory.fr", 19132, 
+            BedrockConnect.getConfig().getImageAssets().getNationsGloryIcon("hub"));
+        addServer(featured, "NationsGlory Alpha", "bedrock.nationsglory.fr", 19100, 
+            BedrockConnect.getConfig().getImageAssets().getNationsGloryIcon("alpha"));
+        addServer(featured, "NationsGlory Sigma", "bedrock.nationsglory.fr", 19102, 
+            BedrockConnect.getConfig().getImageAssets().getNationsGloryIcon("sigma"));
+        addServer(featured, "NationsGlory Omega", "bedrock.nationsglory.fr", 19103, 
+            BedrockConnect.getConfig().getImageAssets().getNationsGloryIcon("omega"));
+        addServer(featured, "NationsGlory Delta", "bedrock.nationsglory.fr", 19101, 
+            BedrockConnect.getConfig().getImageAssets().getNationsGloryIcon("delta"));
+        addServer(featured, "NationsGlory Epsilon", "bedrock.nationsglory.fr", 19104, 
+            BedrockConnect.getConfig().getImageAssets().getNationsGloryIcon("epsilon"));
 
         // Other Servers
-        addServer(other, "The Hive", "geo.hivebedrock.network", 19132, "https://i.imgur.com/RfxfPGz.png");
-        addServer(other, "CubeCraft", "mco.cubecraft.net", 19132, "https://i.imgur.com/aFH1NUr.png");
-        addServer(other, "Lifeboat", "mco.lbsg.net", 19132, "https://i.imgur.com/LoI7bYx.png");
-        addServer(other, "Mineville", "play.inpvp.net", 19132, "https://i.imgur.com/0K4TDut.png");
-        addServer(other, "Galaxite", "play.galaxite.net", 19132, "https://i.imgur.com/VxXO8Of.png");
-        addServer(other, "Enchanted Dragons", "play.enchanted.gg", 19132, "https://i.imgur.com/1Fh9CBf.png");
+        addServer(other, "The Hive", "geo.hivebedrock.network", 19132, 
+            BedrockConnect.getConfig().getImageAssets().getPopularServerIcon("hive"));
+        addServer(other, "CubeCraft", "mco.cubecraft.net", 19132, 
+            BedrockConnect.getConfig().getImageAssets().getPopularServerIcon("cubecraft"));
+        addServer(other, "Lifeboat", "mco.lbsg.net", 19132, 
+            BedrockConnect.getConfig().getImageAssets().getPopularServerIcon("lifeboat"));
+        addServer(other, "Mineville", "play.inpvp.net", 19132, 
+            BedrockConnect.getConfig().getImageAssets().getPopularServerIcon("mineville"));
+        addServer(other, "Galaxite", "play.galaxite.net", 19132, 
+            BedrockConnect.getConfig().getImageAssets().getPopularServerIcon("galaxite"));
+        addServer(other, "Enchanted Dragons", "play.enchanted.gg", 19132, 
+            BedrockConnect.getConfig().getImageAssets().getPopularServerIcon("enchanted_dragons"));
 
         root.put("featured", featured);
         root.put("other", other);

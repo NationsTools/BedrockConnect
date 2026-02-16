@@ -1,7 +1,12 @@
 package main.com.pyratron.pugmatt.bedrockconnect.config.Custom;
 
+import main.com.pyratron.pugmatt.bedrockconnect.BedrockConnect;
+
 public class CustomEntry {
-    public final String DEFAULT_ICON = "https://i.imgur.com/3BmFZRE.png";
+    // Note: DEFAULT_ICON is now loaded from ImageAssets instead of being hardcoded
+    private String getDefaultIcon() {
+        return BedrockConnect.getConfig().getImageAssets().getDefaultServerIcon();
+    }
 
     private String name;
     private String iconUrl;
@@ -19,7 +24,7 @@ public class CustomEntry {
 
     public String getIconUrl() {
         if (iconUrl == null)
-            return DEFAULT_ICON;
+            return getDefaultIcon();
         else
             return iconUrl;
     }

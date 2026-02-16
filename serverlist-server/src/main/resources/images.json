@@ -1,0 +1,23 @@
+{
+  "_comment": "Centralized image assets configuration - Edit URLs here instead of in code",
+  "defaults": {
+    "server_icon": "https://s3.nationstools.fr/public/bedrockconnect/World.png",
+    "user_server": "https://i.imgur.com/nhumQVP.png"
+  },
+  "nationsglory": {
+    "hub": "https://s3.nationstools.fr/public/bedrockconnect/Hub.png",
+    "alpha": "https://s3.nationstools.fr/public/bedrockconnect/Alpha.png",
+    "sigma": "https://s3.nationstools.fr/public/bedrockconnect/Sigma.png",
+    "omega": "https://s3.nationstools.fr/public/bedrockconnect/Omega.png",
+    "delta": "https://s3.nationstools.fr/public/bedrockconnect/Delta.png",
+    "epsilon": "https://s3.nationstools.fr/public/bedrockconnect/Epsilon.png"
+  },
+  "popular_servers": {
+    "hive": "https://i.imgur.com/RfxfPGz.png",
+    "cubecraft": "https://i.imgur.com/aFH1NUr.png",
+    "lifeboat": "https://i.imgur.com/LoI7bYx.png",
+    "mineville": "https://i.imgur.com/0K4TDut.png",
+    "galaxite": "https://i.imgur.com/VxXO8Of.png",
+    "enchanted_dragons": "https://i.imgur.com/1Fh9CBf.png"
+  }
+}
