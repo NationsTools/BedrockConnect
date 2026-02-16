@@ -25,6 +25,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import main.com.pyratron.pugmatt.bedrockconnect.config.CustomServerHandler;
+import main.com.pyratron.pugmatt.bedrockconnect.config.ImageAssets;
 import main.com.pyratron.pugmatt.bedrockconnect.config.Language;
 import main.com.pyratron.pugmatt.bedrockconnect.config.Whitelist;
 import main.com.pyratron.pugmatt.bedrockconnect.config.Custom.CustomEntry;
@@ -58,6 +59,7 @@ public class Config {
     private HashMap<String, String> featuredServerIps;
     private Whitelist whitelist;
     private Language language;
+    private ImageAssets imageAssets;
     private CustomServerHandler customServers;
 
     private Config() {}
@@ -303,6 +305,7 @@ public class Config {
         }
 
         language = new Language(languageFile);
+        imageAssets = new ImageAssets();
 
         if(!fetchFeaturedIps) {
             try {
@@ -456,6 +459,10 @@ public class Config {
 
     public Language getLanguage() {
         return language;
+    }
+
+    public ImageAssets getImageAssets() {
+        return imageAssets;
     }
 
     public CustomEntry[] getCustomServers() {

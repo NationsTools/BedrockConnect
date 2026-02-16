@@ -55,7 +55,8 @@ public class UIForms {
             buttons.add(UIComponents.createButton(BedrockConnect.getConfig().getLanguage().getWording("main", "exitBtn")));
 
         for(int i=0;i<servers.size();i++) {
-            buttons.add(UIComponents.createButton(UIComponents.getServerDisplayName(servers.get(i)), "https://i.imgur.com/nhumQVP.png", "url"));
+            buttons.add(UIComponents.createButton(UIComponents.getServerDisplayName(servers.get(i)), 
+                BedrockConnect.getConfig().getImageAssets().getUserServerIcon(), "url"));
         }
 
         for (CustomEntry cs : customServers) {
@@ -222,7 +223,8 @@ public class UIForms {
 
         JsonArray inputs = new JsonArray();
 
-        inputs.add(UIComponents.createInput(BedrockConnect.getConfig().getLanguage().getWording("connect", "addressTitle"), BedrockConnect.getConfig().getLanguage().getWording("connect", "addressPlaceholder")));
+        inputs.add(
+            UIComponents.createInput(BedrockConnect.getConfig().getLanguage().getWording("connect", "addressTitle"), BedrockConnect.getConfig().getLanguage().getWording("connect", "addressPlaceholder")));
         inputs.add(UIComponents.createInput(BedrockConnect.getConfig().getLanguage().getWording("connect", "portTitle"), BedrockConnect.getConfig().getLanguage().getWording("connect", "portPlaceholder"), Integer.toString(DEFAULT_PORT)));
         inputs.add(UIComponents.createInput(BedrockConnect.getConfig().getLanguage().getWording("connect", "displayNameTitle"), "", ""));
 
